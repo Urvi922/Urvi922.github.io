@@ -1,1 +1,0 @@
-This project intakes the image and detects the facial expression.
