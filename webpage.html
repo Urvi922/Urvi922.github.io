@@ -57,7 +57,7 @@ async function predict_emotion(){
 let input = document.getElementById("input_image");
 
 //let step1 = tf.browser.fromPixels(input).resizeNearestNeighbor([48,48]).mean(2).toFloat().expandDims(0).expandDims(-1).div(255.0)
-const model = await tf.loadLayersModel('C:/Users/windows10/Downloads/model.json');
+const model = await tf.loadLayersModel('model.json');
 pred = model.predict(tf.browser.fromPixels(input).resizeNearestNeighbor([48,48]).mean(2).toFloat().expandDims(0).expandDims(-1).div(255.0));
 //const model = await tf.loadLayersModel('model.json');
 //pred = model.predict(step1)
