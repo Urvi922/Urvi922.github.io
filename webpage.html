@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title> First algorithm deplyoment</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+	    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+	    <link rel="stylesheet" type="text/css" href="styles/page_styling.css">     
+        
+    </head>
+
+ 
+
+<body> 
+    <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@2.0.0/dist/tf.min.js"></script>
+
+    <div class="container" id="tray">
+        <div id="uploadFile" class="custombutton">
+             <i class = "fa fa-file" style="font-size:25px;color: #9e409e"></i><br/><br/>
+             <input type="file" name="fileupload" accept="image/*" onchange="display(event)">
+             <img src="" id="input_image" style="top:5vh;">
+        </div>
+
+        <div class="custombutton">
+            <i class="fa fa-bar-chart" style="font-size:25px;color: #aa4aaa"></i><br/><br/>
+            <input type="button" name="predict" onclick="predict_emotion()" value="PREDICT">
+        </div>
+    </div>
+
+    <div class="container output_screen">
+        <div id="emotiom_tags">
+            <ul>
+                <li>Angry</li>
+                <li>Disgust</li>
+                <li>Fear</li>
+                <li>Happy</li>
+                <li>Netural</li>
+                <li>Sad</li>
+                <li>Surprise</li>
+            </ul>
+        </div>
+
+        <div id="output_chart"></div>
+        <div id="output_text"></div>
+    </div>
+
+<script>
+
+var display=function(event){
+var input_image = document.getElementById("input_image")
+input_image.src = URL.createObjectURL(event.target.files[0])
+console.log("Hellooo");
+}
+
+//predict emotion and display output
+async function predict_emotion(){
+  
+let input = document.getElementById("input_image");
+
+//let step1 = tf.browser.fromPixels(input).resizeNearestNeighbor([48,48]).mean(2).toFloat().expandDims(0).expandDims(-1).div(255.0)
+const model = await tf.loadLayersModel('C:/Users/windows10/Downloads/model.json');
+pred = model.predict(tf.browser.fromPixels(input).resizeNearestNeighbor([48,48]).mean(2).toFloat().expandDims(0).expandDims(-1).div(255.0));
+//const model = await tf.loadLayersModel('model.json');
+//pred = model.predict(step1)
+
+pred.print()
+console.log("End of predict function")
+emotions = ["Angry", "Disgust", "Fear", "Happy", "Sad", "Surprise", "Neutral"]
+
+pred.data()
+    .then((data)=> {console.log(data) 
+        output = document.getElementById("output_chart")
+        output.innerHTML = ""
+        max_val = -1
+        max_val_index = -1
+        for(let i=0;i<data.length;i++)
+        {
+            style_text = "width: "+data[i]*150+"px; height: 25px; position:relative; margin-top: 3vh; background-color: violet; "
+            output.innerHTML+="<div style = '" +style_text+ "'></div>"
+            if(data[i] > max_val)
+            {
+                max_val = data[i]
+                max_val_index = i
+            }
+        }
+        EMOTION_DETECTED = emotions[max_val_index]
+        document.getElementsByClassName("output_screen")[0].style.display="flex";
+        document.getElementById("output_text").innerHTML=""
+        document.getElementById("output_text").innerHTML = "<p>Emotions and corresponding scaled up probability</p> <p>Emotion detected: " + EMOTION_DETECTED + "(" + (max_val*100).toFixed(2) + "% probability)</p>"
+})
+               
+}
+
+    </script>
+
+</body>
+
+</html>    
