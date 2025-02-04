@@ -7,23 +7,10 @@ import emailjs from '@emailjs/browser';
 const ContactForm = () => {
     const form = useRef();
     const [message, setMessage] = useState('');
-    // const [data, setData] = useState({
-    //     name: '',
-    //     email: '',
-    //     subject: '',
-    //     message: ''
-    // });
+ 
 
     const sendEmail = (e) => {
         e.preventDefault()
-
-        // const templateParams = {
-        //     name: data.name,
-        //     email: data.email,
-        //     subject: data.subject,
-        //     message: data.message
-        // };
-
       
         emailjs.sendForm(
             process.env.REACT_APP_EMAIL_SERVICE_ID,
@@ -49,7 +36,7 @@ const ContactForm = () => {
     const formContainer = {
         width: isMobile? '45%': '100%',
         height: isMobile? '45%': '100%',
-        padding: isMobile? '1em': '2em',  
+        padding: isMobile? '0.5em': '1em',  
         display: 'flex',
         flexDirection: 'column'         
     }
@@ -75,22 +62,6 @@ const ContactForm = () => {
         padding: '0.2em 0.4em',
     }
 
-    // const handleChange = (e) => {
-    //     const { name , value } = e.target;
-    //     setData({
-    //         ...data,
-    //         [name]: value,
-    //     });
-    // };
-
-
-    // const handleSubmit = (e) => {
-    //     e.preventDefault();
-
-    //     console.log('Form submitted:', data);
-
-    //     setData({ name: '', email: '', message: ''});
-    // };
 
     return (
         <div style={formContainer}>
@@ -105,8 +76,6 @@ const ContactForm = () => {
                         placeholder="Name"
                         type="text"
                         name="from_name"
-                        // onChange={handleChange}
-                        // value={data.name}
                         style={{
                             width: '14em',
                             borderRadius: '0.15em',
@@ -121,9 +90,7 @@ const ContactForm = () => {
                     <input 
                         placeholder="Email"
                         type="email"
-                        name="from_email"
-                        // onChange={handleChange}
-                        // value={data.email}                        
+                        name="from_email"                    
                         style={{
                             width: '14em',
                             borderRadius: '0.15em',
@@ -138,9 +105,7 @@ const ContactForm = () => {
                     <input 
                         placeholder="Subject"
                         type="text"
-                        name="subject"
-                        // value={data.subject}  
-                        // onChange={handleChange}                     
+                        name="subject"                    
                         style={{
                             width: '14em',
                             borderRadius: '0.15em',
@@ -154,9 +119,7 @@ const ContactForm = () => {
                     <lable>Message: </lable>
                     <textarea   
                         placeholder="Message" 
-                        name="message"
-                        // value={data.message}   
-                        // onChange={handleChange}                   
+                        name="message"                
                         style={{
                             width: '14em',
                             height: '80px', 
@@ -170,12 +133,9 @@ const ContactForm = () => {
                 </div>
 
                 <button type="submit" style={buttonStyle} value="SEND">Send</button>
-
-                {/* <div>
-                    
-                </div> */}
+                
             </form>
-             <p>{message}</p>
+            <p>{message}</p>
 
         </div>
     )

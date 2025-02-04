@@ -17,6 +17,7 @@ const Page4 = () => {
     fontSize: isMobile ? '0.1em' : '0.3em',
     alignItems: 'center',
     justifyContent: 'flex-start',
+   
   }
 
   const image = {
@@ -46,7 +47,7 @@ const Page4 = () => {
   }
 
   const column1 = {
-    padding: '1em',
+    padding: '0.5em',
     color: 'black',
     fontSize: '1em', 
     maxWidth: '30%',
@@ -57,7 +58,7 @@ const Page4 = () => {
   }
 
   const column2 = {
-    padding: '1em',
+    padding: '0.5em',
     color: 'black',
     fontSize: '1em',
     maxWidth: '30%',
