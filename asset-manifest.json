@@ -1,0 +1,30 @@
+{
+  "files": {
+    "main.css": "/static/css/main.512037c7.css",
+    "main.js": "/static/js/main.2448fa85.js",
+    "static/media/react.png": "/static/media/react.7cb86122c7f3d6c27cca.png",
+    "static/media/redux.png": "/static/media/redux.3414de2bcd2775848f62.png",
+    "static/media/python.png": "/static/media/python.0b42b5771c3c299c1ebb.png",
+    "static/media/html.png": "/static/media/html.ccaa8d4bfdc2373222bf.png",
+    "static/media/postman.png": "/static/media/postman.b1b51fdf4d95d2a1e4e9.png",
+    "static/media/r.png": "/static/media/r.d61a29c95fc1ed07795f.png",
+    "static/media/nodejs.png": "/static/media/nodejs.4e1463868425ec432d8d.png",
+    "static/media/Experience.png": "/static/media/Experience.16aef435d0ffdc391113.png",
+    "static/media/css.png": "/static/media/css.31e12df5f8281227cf27.png",
+    "static/media/csharp.png": "/static/media/csharp.875af576d2c077d3a1d0.png",
+    "static/media/leetcode.png": "/static/media/leetcode.5036dec3f1ddb29216e9.png",
+    "static/media/vscode.png": "/static/media/vscode.8c6b8b12bf783cc9604e.png",
+    "static/media/profile.png": "/static/media/profile.5fba35ad8b1fbb131394.png",
+    "static/media/e-commerce.png": "/static/media/e-commerce.76d14f05d47c6260eb95.png",
+    "static/media/mysql.png": "/static/media/mysql.977b9f837b5068320bf2.png",
+    "static/media/javascript.png": "/static/media/javascript.5e5b3a9569e6b9085015.png",
+    "static/media/figma.png": "/static/media/figma.925deeb7de14bc5614f4.png",
+    "index.html": "/index.html",
+    "main.512037c7.css.map": "/static/css/main.512037c7.css.map",
+    "main.2448fa85.js.map": "/static/js/main.2448fa85.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.512037c7.css",
+    "static/js/main.2448fa85.js"
+  ]
+}
