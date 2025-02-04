@@ -3,13 +3,22 @@ import Page1 from './components/Page1';
 import Page2 from './components/Page2';
 import Page3 from './components/Page3';
 import Page4 from './components/Page4';
+import Loader from './components/Loader';
 
 
 const App = () => {
+  const [loading, setLoading] = useState(true);
   const [currentPage, setCurrentPage] = useState(1);
   const containerRef = useRef(null);
   const isScrolling = useRef(false); // Lock scrolling during transition
   const transitionTimeout = useRef(null); // To store the timeout for clearing later
+
+  // for loading animation
+  useEffect(() => {
+    setTimeout(() => {
+      setLoading(false);
+    }, 3000);
+  }, [])
 
   // Hide all scrollbars globally
   useEffect(() => {
@@ -128,7 +137,9 @@ const App = () => {
   }, [currentPage]);
 
   return (
+
     <div ref={containerRef} style={containerStyle} className='glow marauders-map'>
+      {loading ? <Loader /> :
       <div
         style={{
           display: 'flex',
@@ -137,10 +148,12 @@ const App = () => {
           transform: getRowTransform(currentPage),
         }}
       >
+        
         {/* Row 1: Page 1 and Page 4 */}
         {/*borderTop:' solid black', borderLeft: 'solid black',borderRight: 'solid black'*/}
         {/* borderTop:'solid black', borderLeft: 'solid black', borderRight: 'solid black'*/}
         <div style={{ ...rowStyle }}>
+          
 
           <div style={{...pageStyle, borderTop: '0.3rem solid black', borderLeft: '0.3rem solid black', borderRight: '0.3rem solid black' }}><Page1 /></div>
 
@@ -158,8 +171,11 @@ const App = () => {
           <div style={{ ...pageStyle, borderBottom: '0.3rem solid black', borderRight: '0.3rem solid black', }}><Page3 /></div>
 
         </div>
+        
       </div>
+      }   
     </div>
+    
   );
 };
 
