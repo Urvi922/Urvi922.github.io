@@ -1,11 +1,12 @@
 import React, { useRef, useState} from 'react';
 import emailjs from '@emailjs/browser';
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+
+
+
 
 const ContactForm = () => {
     const form = useRef();
-    // const [message, setMessage] = useState('');
+    const [message, setMessage] = useState('');
     // const [data, setData] = useState({
     //     name: '',
     //     email: '',
@@ -23,56 +24,22 @@ const ContactForm = () => {
         //     message: data.message
         // };
 
-        console.log("Service ID:", process.env.REACT_APP_EMAIL_SERVICE_ID);
-        console.log("Template ID:", process.env.REACT_APP_EMAIL_TEMPLATE_ID);
-        console.log("Public Key:", process.env.REACT_APP_PUBLIC_KEY);
-
-        console.log("Form Data:", form.current);
-
-
+      
         emailjs.sendForm(
             process.env.REACT_APP_EMAIL_SERVICE_ID,
             process.env.REACT_APP_EMAIL_TEMPLATE_ID,
             form.current,
             process.env.REACT_APP_PUBLIC_KEY
-        ) .then(
-            () => {
-                toast.success('Message successfully sent!', {
-                    position: 'bottom-center',
-                    autoClose: 3500,
-                    hideProgressBar: false,
-                    closeOnClick: true,
-                    pauseOnHover: true,
-                    draggable: true,
-                    progress: undefined,
-                    theme: 'dark',
-                })
-                const timeout = setTimeout(() => {
-                    window.location.reload(false)
-                }, 3900)
-
-                return () => clearTimeout(timeout)
+        )         
+        .then(
+             (result) => {
+                 console.log("Email sent successfully", result.text);
+                setMessage("Book recommended successfully :) ");
+                form.current.reset();
             },
-            () => {
-                  toast.error('Failed to send the message, please try again', {
-                   position: 'bottom-center',
-                   autoClose: 3500,
-                   hideProgressBar: false,
-                   closeOnClick: true,
-                   pauseOnHover: true,
-                   draggable: true,
-                   progress: undefined,
-                   theme: 'dark',                
-            })
-        // .then(
-        //     (result) => {
-        //         console.log("Email sent successfully", result.text);
-        //         setMessage("Book recommended successfully :) ");
-        //         form.current.reset();
-        //     },
-        //     (emailError) => {
-        //         console.log("Error sending email:",emailError);
-        //         setMessage("unable to send book recommendation :(")
+            (error) => {
+                console.log("Error sending email:",error.text);
+                setMessage("Unable to send book recommendation :(")
             }
         )
     }
@@ -208,7 +175,7 @@ const ContactForm = () => {
                     
                 </div> */}
             </form>
-            {/* <p>{message}</p> */}
+             <p>{message}</p>
 
         </div>
     )
