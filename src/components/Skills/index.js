@@ -47,15 +47,6 @@ const Skills = () => {
         { src: Vscode, alt: "Vscode" }
     ];
 
-    // const tools = [
-    //     { src: Git, alt: "Git" },
-    //     { src: VisualStudio, alt: "VisualStudio" },
-    //     { src: Postman, alt: "Postman" },
-    //     { src: NPM, alt: "NPM" },
-    //     { src: Figma, alt: "Figma" },
-    //     { src: Jupyter, alt: "Jupyter" },
-    //     { src: Vscode, alt: "Vscode" }
-    // ];
 
     const isMobile = window.innerWidth <= 898;
 
@@ -64,19 +55,15 @@ const Skills = () => {
         width: isMobile? '3em': '8em',
         height: isMobile? '3em': '8em',
         padding: '1.5em',
+        border: '0.2em solid black'
     }
 
-    // const heading = {
-    //     color: 'black',
-    //     fontSize: isMobile? '1.2em': '2.4em',
-    //     padding: isMobile? '0.1em': '0.6em',
-    // }
-
+   
     const flipCardStyle ={
         perspective: '1000px',
         width: isMobile? '3em': '8em',
         height: isMobile? '3em': '8em',
-        padding: isMobile? '1em': '2em',
+        padding: isMobile? '1em': '3em',
     }
 
     const flipCardInnerStyle ={
@@ -85,23 +72,35 @@ const Skills = () => {
         height: isMobile? '3em': '8em',
         transition: 'transform 0.6s',
         transformStyle: 'preserve-3d',
+        display:'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+        textAlign: 'center', 
     }
     
-    const frontStyle ={
+    const frontStyle = {
         position: 'absolute',
         width: isMobile? '3em': '8em',
         height: isMobile? '3em': '8em',
         backfaceVisibility: 'hidden',
+        display:'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
     }
 
-    const backStyle ={
-        ...frontStyle,
+    const backStyle = {
+        position: 'absolute',
+        width: isMobile? '3em': '8em',
+        height: isMobile? '3em': '8em',
+        backfaceVisibility: 'hidden',
         transform: 'rotateY(180deg)',
         display: 'flex',
         alignItems: 'center',
+        textAlign: 'center',
         justifyContent: 'center',
-        fontSize: isMobile? '1em': '2em',
-        color: 'black'
+        fontSize: isMobile? '0.5em': '1.37em',
+        color: 'black',
+        border: '0.18em solid black'
     }       
 
     const FlipCard = ({imageSrc, text}) => {
@@ -112,7 +111,7 @@ const Skills = () => {
             onMouseEnter={() => setIsFlip(true)}
             onMouseLeave={() => setIsFlip(false)}
         >
-            <div style={{...flipCardInnerStyle, transform: isFlip ? 'rotateY(180deg)' : 'rotateY(0deg)', paddingRight:'4em'}}>
+            <div style={{...flipCardInnerStyle, transform: isFlip ? 'rotateY(180deg)' : 'rotateY(0deg)'}}>
                 <div style={frontStyle}>
                     <img src={imageSrc} alt='Card Front' style={image} />
                 </div>
@@ -128,7 +127,7 @@ const Skills = () => {
     const ImageTech = ({ title, images }) => (
         <div>
             {/* <div style={heading}>{title}</div> */}
-            <div style={{display:'flex', flexDirection:'row'}}>
+            <div style={{display:'flex', flexDirection:'row',  display:'flex',  alignItems: 'center', justifyContent: 'center' }}>
                 {images.map((img, index) => (
                     <FlipCard key={index} imageSrc={img.src} text={img.alt} />   
                        
@@ -159,10 +158,10 @@ const Skills = () => {
             <div style={movingTrack}>{children}{children}</div>
             <style>
                 {`
-                @keyframes scrolling {
-                    from { transform: translateX(0); }
-                    to { transform: translateX(-50%); }
-                }
+                    @keyframes scrolling {
+                        from { transform: translateX(0); }
+                        to { transform: translateX(-50%); }
+                    }
                 `}
             </style>
 

@@ -66,10 +66,10 @@ const Page2 = () => {
   return (
     <div>
       <div style={{position: 'fixed', zIndex: 1000}}>
-        <Line height={2} width={0.3} color='black' top={1.5} right={0} left={89.9} />
+        <Line height={2} width={0.3} color='black' top={1.5} right={0} left={89.8} />
       </div>
       <div style={{position: 'fixed', zIndex: 1000}}>
-        <Line height={0.3} width={1} color='black' top={3.3} right={0} left={89.9} />
+        <Line height={0.3} width={1} color='black' top={3.3} right={0} left={89.8} />
       </div>
 
       <div style={row}>

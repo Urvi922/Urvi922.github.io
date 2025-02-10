@@ -25,6 +25,7 @@ const App = () => {
     document.body.style.overflow = 'hidden'; // Hide all scrollbars
     document.body.style.display = 'contents';
     document.body.style.fontFamily = 'Kalam';
+    
     return () => {
       document.body.style.overflow = ''; // Reset when the component is unmounted
     };
@@ -44,7 +45,7 @@ const App = () => {
     const isScrollingHorizontal = Math.abs(e.deltaX) > Math.abs(e.deltaY); // Horizontal scroll (deltaX > deltaY)
 
     // Log the direction
-    console.log('Scroll Direction:', isScrollingDown ? 'down' : isScrollingUp ? 'up' : 'horizontal');
+    // console.log('Scroll Direction:', isScrollingDown ? 'down' : isScrollingUp ? 'up' : 'horizontal');
 
     // Handle scrolling based on the current page and direction
     if (isScrollingDown) {

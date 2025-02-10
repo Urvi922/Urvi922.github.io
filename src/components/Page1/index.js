@@ -2,18 +2,19 @@ import React from 'react';
 import Profile from '../../images/profile.png';
 import Skills from '../Skills';
 
-
 const Page1 = () => {
   
-  const isMobile = window.innerWidth <= 898;
+  const isTab = window.innerWidth <= 768;
+  const isMobile = window.innerWidth <=480;
 
   const row = {
     display: 'flex',
     flexDirection: 'column',
-    padding: isMobile? '0.1em': '3em',
+    padding: isMobile? '0.5em': '3em',
     fontSize: isMobile? '0.1em': '0.3em',
     alignItems: 'center',
     justifyContent: 'flex-start',
+    flexWrap: 'wrap', 
   }
 
   const image = {
@@ -49,7 +50,7 @@ const Page1 = () => {
     color: 'black',
     paddingBottom: isMobile? '0.8em': '2em',
     justifyContent: 'center',
-    height: '20em'
+    height: '20em',
   }
 
   const arrow = {
