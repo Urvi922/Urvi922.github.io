@@ -1,5 +1,6 @@
 body {
-    cursor: url('/public/wand.png'), auto;
+    /* cursor: url('/public/wand.png'), auto; */
+    cursor: text;
 }
 
 .glow span {

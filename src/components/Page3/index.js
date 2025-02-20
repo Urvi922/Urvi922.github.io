@@ -2,51 +2,54 @@ import React from 'react';
 import Line from '../Line';
 import Project from '../../images/Project.png';
 import ProjectGrid from '../ProjectGrid';
+import useScreenSize from '../../hooks/useScreenSize';
 
 
 const Page3 = () => {
 
-  const isMobile = window.innerWidth <= 898;
-  
+  // const isMobile = window.innerWidth <= 898;
+
+  const { isMobile } = useScreenSize();  
 
   const row = {
     display: 'flex',
     flexDirection: 'column',
-    padding: isMobile ? '0.1em' : '3em',
-    fontSize: isMobile ? '0.1em' : '0.3em',
+    padding: isMobile ? '1em' : '3em',
+    fontSize: isMobile ? '0.3em' : '0.3em',
     alignItems: 'center',
     justifyContent: 'flex-start',
   }
 
   const info = {
     color: 'black',
-    fontSize: isMobile? '0.8em': '1.6em',
-    padding: isMobile? '0.3em': '0.6em',
-    maxWidth: '100em',
+    fontSize: isMobile? '1em': '1.6em',
+    padding: isMobile? '0.2em': '0.4em',
+    maxWidth: isMobile? '25em':'100em',
     wordWrap: 'break-word',
-    whiteSpace: 'normal'
+    whiteSpace: 'pre-wrap'
   }
 
   const image = {
     color: 'black',
     width: isMobile ? '6em' : '12em',
     height: isMobile ? '6em' : '12em',
-    padding: isMobile ? '0.1em' : '0.9em',
+    padding: isMobile ? '0.5em' : '1em',
   }
 
   const heading = {
     color: 'black',
     fontSize: isMobile ? '1.2em' : '2.4em',
-    padding: isMobile ? '0.1em' : '0.4em'
+    padding: isMobile ? '0.1em' : '0.5em',
+    maxWidth: isMobile? '15em':'100em',
   }
 
   const projectContainer = {
     position: 'relative',
-    width: '140em',
-    height: '42em',
+    width: isMobile? '25em': '140em',
+    height: isMobile? '29em': '41em',
     border: '1px solid white',
-    right: '0',
-    bottom: '0',
+    right: isMobile? '-1em':'0',
+    bottom: isMobile? '-2em': '0',
   }
 
   const arrow = {
@@ -61,10 +64,10 @@ const Page3 = () => {
   return (
     <div>
       <div style={{position: 'fixed', zIndex: 1000}}>
-        <Line height={1.9} width={0.3} color='black' top={1.7} right={0} left={-2.5} />
+        <Line height={1.99} width={0.3} color='black' top={isMobile? 0.4 : 1.6} right={0} left={isMobile? 0.2 : -2.5} />
       </div>
       <div style={{position: 'fixed', zIndex: 1000}}>
-        <Line height={0.3} width={1.1} color='black' top={3.5} right={0} left={-3.3} />
+        <Line height={0.3} width={1.1} color='black' top={isMobile? 2 : 3.5} right={0} left={isMobile? -0.6 : -3.3} />
       </div>
 
       <div style={row}>

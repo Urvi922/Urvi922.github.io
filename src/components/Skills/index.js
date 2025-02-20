@@ -1,4 +1,5 @@
 import React, { useState } from 'react'; 
+import useScreenSize from '../../hooks/useScreenSize';
 import Python from '../../images/python.png';
 import Javascript from '../../images/javascript.png';
 import HTML from '../../images/html.png';
@@ -47,13 +48,13 @@ const Skills = () => {
         { src: Vscode, alt: "Vscode" }
     ];
 
-
-    const isMobile = window.innerWidth <= 898;
+    const { isMobile } = useScreenSize();
+    
 
     const image = {
         color: 'black',
-        width: isMobile? '3em': '8em',
-        height: isMobile? '3em': '8em',
+        width: isMobile? '8em': '8em',
+        height: isMobile? '8em': '8em',
         padding: '1.5em',
         border: '0.2em solid black'
     }
@@ -61,15 +62,15 @@ const Skills = () => {
    
     const flipCardStyle ={
         perspective: '1000px',
-        width: isMobile? '3em': '8em',
-        height: isMobile? '3em': '8em',
-        padding: isMobile? '1em': '3em',
+        width: isMobile? '8em': '8em',
+        height: isMobile? '8em': '8em',
+        padding: isMobile? '1.5em': '3em',
     }
 
     const flipCardInnerStyle ={
         position: 'relative',
-        width: isMobile? '3em': '8em',
-        height: isMobile? '3em': '8em',
+        width: isMobile? '8em': '8em',
+        height: isMobile? '8em': '8em',
         transition: 'transform 0.6s',
         transformStyle: 'preserve-3d',
         display:'flex',
@@ -80,8 +81,8 @@ const Skills = () => {
     
     const frontStyle = {
         position: 'absolute',
-        width: isMobile? '3em': '8em',
-        height: isMobile? '3em': '8em',
+        width: isMobile? '8em': '8em',
+        height: isMobile? '8em': '8em',
         backfaceVisibility: 'hidden',
         display:'flex',
         alignItems: 'center',
@@ -90,15 +91,15 @@ const Skills = () => {
 
     const backStyle = {
         position: 'absolute',
-        width: isMobile? '3em': '8em',
-        height: isMobile? '3em': '8em',
+        width: isMobile? '8em': '8em',
+        height: isMobile? '8em': '8em',
         backfaceVisibility: 'hidden',
         transform: 'rotateY(180deg)',
         display: 'flex',
         alignItems: 'center',
         textAlign: 'center',
         justifyContent: 'center',
-        fontSize: isMobile? '0.5em': '1.37em',
+        fontSize: isMobile? '0.7em': '1.37em',
         color: 'black',
         border: '0.18em solid black'
     }       
@@ -127,7 +128,7 @@ const Skills = () => {
     const ImageTech = ({ title, images }) => (
         <div>
             {/* <div style={heading}>{title}</div> */}
-            <div style={{display:'flex', flexDirection:'row',  display:'flex',  alignItems: 'center', justifyContent: 'center' }}>
+            <div style={{display:'flex', flexDirection:'row',  alignItems: 'center', justifyContent: 'center' }}>
                 {images.map((img, index) => (
                     <FlipCard key={index} imageSrc={img.src} text={img.alt} />   
                        

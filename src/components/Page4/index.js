@@ -5,16 +5,17 @@ import Resume from '../Resume';
 import Github from '../../images/github.png';
 import LinkedIn from '../../images/linkedin.png';
 import Leetcode from '../../images/leetcode.png';
+import useScreenSize from '../../hooks/useScreenSize';
 
 const Page4 = () => {
 
-  const isMobile = window.innerWidth <= 898;
+  const { isMobile } = useScreenSize(); 
 
   const row = {
     display: 'flex',
     flexDirection: 'column',
-    padding: isMobile ? '0.1em' : '3em',
-    fontSize: isMobile ? '0.1em' : '0.3em',
+    padding: isMobile ? '1em' : '3em',
+    fontSize: isMobile ? '0.3em' : '0.3em',
     alignItems: 'center',
     justifyContent: 'flex-start',
    
@@ -24,48 +25,52 @@ const Page4 = () => {
     color: 'black',
     width: isMobile ? '6em' : '12em',
     height: isMobile ? '6em' : '12em',
-    padding: isMobile ? '0.1em' : '1em',
+    padding: isMobile ? '0.5em' : '1em',
   }
  
   const heading = {
     color: 'black',
     fontSize: isMobile ? '1.2em' : '2.4em',
-    padding: isMobile ? '0.1em' : '0.4em'
+    padding: isMobile ? '0.1em' : '0.4em',
+    maxWidth: isMobile? '15em':'100em',
+    height: isMobile? '1em' : 'auto'
   }
   
   const column = {
     display: 'flex',
-    flexDirection: 'row',
+    flexDirection: isMobile? 'column' : 'row',
     flex: 1,
     alignItems: 'center',
     justifyContent: 'center', 
-    gap: '1em',
-    width: isMobile? '200em': '120em',
-    height: '40em',
+    gap: isMobile ? '0.2em' : '1em',
+    width: isMobile? '100em': '120em',
+    height: isMobile? '18em' : '40em',
     fontSize: isMobile? '0.8em': '1.6em',
     color: 'black',
   }
 
+  
   const column1 = {
-    padding: '0.5em',
+    padding: isMobile? '0.2em' : '0.5em',
     color: 'black',
     fontSize: '1em', 
     maxWidth: '30%',
     flex: 1,
     boxSizing: 'border-box',
-    height: '100%',  
+    height: isMobile? '90%' : '100%',  
     textAlign: 'center',   
   }
 
   const column2 = {
-    padding: '0.5em',
+    padding: isMobile? '0.2em' : '0.5em',
     color: 'black',
     fontSize: '1em',
     maxWidth: '30%',
     flex: 1,
     boxSizing: 'border-box',
-    height: '100%',
-    textAlign: 'center',
+    height: isMobile? '90%' : '100%',
+    textAlign: 'center',  
+    justifyItems: 'center',
   }
 
   const styles = {
@@ -76,7 +81,7 @@ const Page4 = () => {
     icons: {
       display: 'flex',
       justifyContent: 'center',
-      gap: '1.5em',
+      gap: isMobile? '0.7em':'1.5em',
     },
     link: {
       textDecoration: 'none',
@@ -111,15 +116,15 @@ const Page4 = () => {
             <h3>You can find me on !</h3>
             <div style={styles.icons}>
               <a href="https://github.com/Urvi922" target="_blank" rel="noopener noreferrer" style={styles.link}>
-              <img src={Github} alt="GitHub" width="40" />
+              <img src={Github} alt="GitHub" width="40" style={{width: isMobile? '3em' : '40px'}} />
               </a>
 
               <a href="https://www.linkedin.com/in/urvi-patel-797795119/" target="_blank" rel="noopener noreferrer" style={styles.link}>
-                <img src={LinkedIn} alt="LinkedIn" width="40" />
+                <img src={LinkedIn} alt="LinkedIn" width="40" style={{width: isMobile? '3em' : '40px'}} />
               </a>
 
               <a href="https://leetcode.com/u/UrviPatel_729/" target="_blank" rel="noopener noreferrer" style={styles.link}>
-                <img src={Leetcode} alt="LinkedIn" width="40" />
+                <img src={Leetcode} alt="LinkedIn" width="40" style={{width: isMobile? '3em' : '40px'}} />
               </a>
 
             </div>

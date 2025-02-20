@@ -1,5 +1,6 @@
 import React, { useRef, useState} from 'react';
 import emailjs from '@emailjs/browser';
+import useScreenSize from '../../hooks/useScreenSize';
 
 
 
@@ -31,14 +32,15 @@ const ContactForm = () => {
         )
     }
 
-    const isMobile = window.innerWidth <= 898;
+    const { isMobile } = useScreenSize(); 
 
     const formContainer = {
-        width: isMobile? '45%': '100%',
-        height: isMobile? '45%': '100%',
-        padding: isMobile? '0.5em': '1em',  
+        width: isMobile? '90%': '100%',
+        height: isMobile? '90%': '100%',
+        padding: isMobile? '0.4em': '1em',  
         display: 'flex',
-        flexDirection: 'column'         
+        flexDirection: 'column',
+        alignItems: 'center'       
     }
 
     const formStyle = {
@@ -52,22 +54,31 @@ const ContactForm = () => {
     const lineStyle = {
         display: 'flex', 
         flexDirection: 'row', 
-        gap:'1em'
+        gap:'1em',
+        height: isMobile? '1.7em' :'auto',
     } 
 
     const buttonStyle = {
         backgroundColor:'rgb(3, 3, 3)',
         color: 'white',
         borderRadius: '0.5em',
-        padding: '0.2em 0.4em',
+        padding: isMobile? '0.1em 0.2em' : '0.2em 0.4em',
+        width: isMobile? '70%' : '',
+        marginTop: isMobile? '0.7em' : '0',
+    }
+
+    const heading = {
+        color: 'black',
+        padding: isMobile ? '0em' : '0.4em',
+        maxWidth: isMobile? '100%':'100em',
     }
 
 
     return (
         <div style={formContainer}>
-            <div>
-                <h2>Book suggestions !</h2>
-                <p>Suggest a book, why I should read it</p>
+            <div style={heading}>
+                <h2 style={{width: isMobile? '13em' : '23em'}}>Book suggestions</h2>
+                <p style={{width: isMobile? '20em' : '100%'}}>Suggest a book and give a reason to read!</p>
             </div>
             <form ref={form} onSubmit={sendEmail} style={formStyle}>
                 <div style={lineStyle}>
@@ -77,7 +88,7 @@ const ContactForm = () => {
                         type="text"
                         name="from_name"
                         style={{
-                            width: '14em',
+                            width: isMobile? '7em': '14em',
                             borderRadius: '0.15em',
                             border: '1px solid rgb(3, 3, 3)'
                         }}               
@@ -92,7 +103,7 @@ const ContactForm = () => {
                         type="email"
                         name="from_email"                    
                         style={{
-                            width: '14em',
+                            width: isMobile? '7em':'14em',
                             borderRadius: '0.15em',
                             border: '1px solid rgb(3, 3, 3)'
                         }}
@@ -107,7 +118,7 @@ const ContactForm = () => {
                         type="text"
                         name="subject"                    
                         style={{
-                            width: '14em',
+                            width:isMobile? '7em': '14em',
                             borderRadius: '0.15em',
                             border: '1px solid rgb(3, 3, 3)'
                         }}
@@ -121,8 +132,8 @@ const ContactForm = () => {
                         placeholder="Message" 
                         name="message"                
                         style={{
-                            width: '14em',
-                            height: '80px', 
+                            width: isMobile? '8em' : '14em',
+                            height: isMobile? '1.6em' : '80px', 
                             resize: 'vertical', 
                             fontSize: '1em',
                             borderRadius: '0.15em',

@@ -1,33 +1,36 @@
 import React from 'react';
 import Profile from '../../images/profile.png';
 import Skills from '../Skills';
+import useScreenSize from '../../hooks/useScreenSize';
 
 const Page1 = () => {
   
-  const isTab = window.innerWidth <= 768;
-  const isMobile = window.innerWidth <=480;
+  // const isTab = window.innerWidth <= 768;
+  // const isMobile = window.innerWidth <=480;
+
+  const { isMobile } = useScreenSize();
 
   const row = {
     display: 'flex',
     flexDirection: 'column',
-    padding: isMobile? '0.5em': '3em',
-    fontSize: isMobile? '0.1em': '0.3em',
+    padding: isMobile? '1em': '3em',
+    fontSize: isMobile? '0.3em': '0.3em',
     alignItems: 'center',
     justifyContent: 'flex-start',
-    flexWrap: 'wrap', 
   }
 
   const image = {
     color: 'black',
     width: isMobile? '6em': '12em',
     height: isMobile? '6em': '12em',
-    padding: isMobile? '0.1em': '2em',
+    padding: isMobile? '0.5em': '2em',
   }
 
   const heading = {
     color: 'black',
     fontSize: isMobile? '1.2em': '2.4em',
     padding: isMobile? '0.1em': '0.5em',
+    maxWidth: isMobile? '15em':'100em',
     
   }
 
@@ -35,22 +38,23 @@ const Page1 = () => {
     color: 'black',
     fontSize: isMobile? '1.2em': '2.4em',
     padding: isMobile? '0.5em': '1em',
+    maxWidth: isMobile? '25em':'100em',
   }
 
   const info = {
     color: 'black',
-    fontSize: isMobile? '0.7em': '1.4em',
+    fontSize: isMobile? '1em': '1.4em',
     padding: isMobile? '0.3em': '0.6em',
-    maxWidth: '100em',
+    maxWidth: isMobile? '25em':'100em',
     wordWrap: 'break-word',
-    whiteSpace: 'normal'
+    whiteSpace: 'pre-wrap'
   }
 
   const skills = {
     color: 'black',
     paddingBottom: isMobile? '0.8em': '2em',
     justifyContent: 'center',
-    height: '20em',
+    height: isMobile? '9em': '20em',
   }
 
   const arrow = {

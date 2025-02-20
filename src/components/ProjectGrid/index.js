@@ -5,6 +5,7 @@ import API from '../../images/api.png';
 import SocialMedia from '../../images/socialmedia.png';
 import Stock from '../../images/stock.png';
 import ImageProcessiong from '../../images/Imageprocessing.png';
+import useScreenSize from '../../hooks/useScreenSize';
 
 
 const ProjectGrid = () => {
@@ -23,40 +24,60 @@ const ProjectGrid = () => {
         { size: 'medium', image: ImageProcessiong, title: 'Comparison between CNNs', link: 'https://github.com/Urvi922/Comparison-between-CNNs-for-Image-Classification' },
       ];
        
+    
+    const { isMobile } = useScreenSize();
 
-    const getItemSize = (size) => {
-        switch (size) {
-            case 'medium':
-                return { gridRowEnd: 'span 1', gridColumnEnd: 'span 1'};
-            case 'large':
-                return { gridRowEnd: 'span 4', gridColumnEnd: 'span 2'};
-            default:
-                return {};
+    const getItemSize = (size, isMobile) => {
+        if (isMobile) {
+            return size === 'large'
+              ? { gridRowEnd: 'span 1', gridColumnEnd: 'span 1' } 
+              : { gridRowEnd: 'span 1', gridColumnEnd: 'span 1' }; 
+          } else {
+            return size === 'large'
+              ? { gridRowEnd: 'span 4', gridColumnEnd: 'span 2' } 
+              : { gridRowEnd: 'span 1', gridColumnEnd: 'span 1' }; 
+          }
+    };
+
+    const getGridTemplate = (isMobile) => {
+        if (isMobile) {
+            return `
+                "a b"
+                "c d"
+                "e f"
+            `; 
+        } else {
+           return  `
+            "a a b d d e"
+            "a a c d d f"
+        `
         }
     }
 
     const gridContainer = {
         display: 'grid',
-        gridTemplateColumns: 'repeat(6, 1fr)',
-        gap: '1em',
+        gridTemplateColumns: isMobile ? 'repeat(2, 1fr)' : 'repeat(6, 1fr)',
+        gridTemplateAreas: getGridTemplate(isMobile),
+        gap: isMobile ? '0.1em' : '1em',
         padding: '0.1em'
     }
 
     const gridItem = {
         backgroundColor: '#ffffff',
         position: 'relative',
-        width: '90%',
-        height: '90%',
+        width: isMobile? '70%' : '90%',
+        height:  isMobile? '70%': '90%',
         overflow: 'hidden',
         borderRadius: '1em',
         boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)',
         transition: 'transform 0.3s ease, box-shadow 0.3s ease',
+        border: '0.11em solid black',
     }
 
     const imageStyle = {
-        width: '100%',
-        height: '100%',
-        objectFit: 'cover',
+        width: isMobile? '90%' : '100%',
+        height: isMobile? '90%' : '100%',
+        objectFit: isMobile? 'inherit' : 'cover',
     }
 
 
@@ -79,7 +100,7 @@ const ProjectGrid = () => {
     return (
         <div style={gridContainer}>
             {squares.map((square, index) => (
-                <div key={index} style={{ ...gridItem, ...getItemSize(square.size) }}
+                <div key={index} style={{ ...gridItem, ...getItemSize(square.size, isMobile)}}
                 onMouseEnter={(e) =>
                     e.currentTarget.querySelector('.hover-overlay').style.opacity = '1'
                 }
@@ -90,13 +111,13 @@ const ProjectGrid = () => {
                     <img src={square.image} alt={index} style={imageStyle} />
                     
                     <div className="hover-overlay" style={hoverOverlay}>
-                    <div style={{ fontSize: '2em'}}>{square.title}</div>
+                    <div style={{ fontSize: isMobile? '0.5em' : '2em'}}>{square.title}</div>
                         <a
                             href={square.link}
                             style={{
                                 color: '#FFF',
                                 textDecoration: 'underline',
-                                fontSize: 'em'
+                                fontSize: isMobile? '0.5em' : '2em'
                             }}
                             target="_blank"
                             rel="noopener noreferrer"

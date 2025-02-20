@@ -2,16 +2,19 @@ import React from 'react';
 import Line from '../Line';
 import Experience from '../../images/Experience.png';
 import Timeline from '../Timeline';
+import useScreenSize from '../../hooks/useScreenSize';
 
 const Page2 = () => {
 
-  const isMobile = window.innerWidth <= 898;
+  // const isMobile = window.innerWidth <= 898;
+
+  const { isMobile } = useScreenSize();
 
   const row = {
     display: 'flex',
     flexDirection: 'column',
-    padding: isMobile ? '0.1em' : '3em',
-    fontSize: isMobile ? '0.1em' : '0.3em',
+    padding: isMobile ? '1em' : '3em',
+    fontSize: isMobile ? '0.3em' : '0.3em',
     alignItems: 'center',
     justifyContent: 'flex-start'
   }
@@ -20,35 +23,38 @@ const Page2 = () => {
     color: 'black',
     width: isMobile ? '6em' : '12em',
     height: isMobile ? '6em' : '12em',
-    padding: isMobile ? '0.1em' : '1em',
+    padding: isMobile ? '0.5em' : '2em',
   }
 
   const heading = {
     color: 'black',
     fontSize: isMobile ? '1.2em' : '2.4em',
-    padding: isMobile ? '0.1em' : '0.8em'
+    padding: isMobile ? '0.1em' : '0.8em',
+    maxWidth: isMobile? '15em':'100em',
   }
 
   const info = {
     color: 'black',
-    fontSize: isMobile? '0.8em': '1.6em',
+    fontSize: isMobile? '1em': '1.4em',
     padding: isMobile? '0.3em': '0.6em',
-    maxWidth: '100em',
+    maxWidth: isMobile? '25em':'100em',
     wordWrap: 'break-word',
-    whiteSpace: 'normal'
+    whiteSpace: 'pre-wrap'
   }
 
   const timelinecontainer = {
     position: 'relative',
-    width: '140em',
-    height: '40em',
+    width: isMobile? '100%': '140em',
+    height: isMobile? '28em': '40em',
     border: '1px solid white',
-    right: '0',
-    // boxShadow: isHoverBox
-    //   ? '10px 10px 30px rgba(0, 0, 0, 0.4)'
-    //   : '5px 5px 15px rgba(0, 0, 0, 0)',
-    // transition: 'box-shadow 0.3s ease-in-out',
+    right: isMobile? '-7em': '0',
   }
+
+  const scrollContainer = {
+    overflowX: isMobile ? 'scroll' : 'visible', // Enable horizontal scrolling on small screens
+    overflowY: 'visible', // Disable vertical scrolling (optional)
+    width: '100%', // Ensure the container fits the screen width
+  };
 
   const arrow = {
     display: 'inline-block',
@@ -66,10 +72,10 @@ const Page2 = () => {
   return (
     <div>
       <div style={{position: 'fixed', zIndex: 1000}}>
-        <Line height={2} width={0.3} color='black' top={1.5} right={0} left={89.8} />
+        <Line height={1.99} width={0.3} color='black' top={isMobile? 0.26 : 1.99} right={0} left={isMobile? 16.5 : 89.8} />
       </div>
       <div style={{position: 'fixed', zIndex: 1000}}>
-        <Line height={0.3} width={1} color='black' top={3.3} right={0} left={89.8} />
+        <Line height={0.3} width={1} color='black' top={isMobile? 1.99 : 3.9} right={0} left={isMobile? 16.6 : 89.8} />
       </div>
 
       <div style={row}>
@@ -87,12 +93,12 @@ const Page2 = () => {
         <div style={info}>You will find here Urvi's journey of gaining knowldge in all the technologies mentioned previosuly. It is clear that she has been dedicated to learning an grow in the field of her interest.</div>
 
         {/* fourth row */}
+        <div style={scrollContainer}>
         <div
           style={timelinecontainer}
-          // onMouseEnter={() => setHoverBox(true)}
-          // onMouseLeave={() => setHoverBox(false)}
         >
           <Timeline />
+        </div>
         </div>
 
         {/* fifth row */}

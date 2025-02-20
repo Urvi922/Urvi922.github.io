@@ -1,4 +1,5 @@
 import React, {useState} from 'react';
+import useScreenSize from '../../hooks/useScreenSize';
 
 const Timeline = () => {
 
@@ -31,15 +32,17 @@ const Timeline = () => {
           description: 'Developed an E-commerce web application for a jewelry business, where backend is developed in NodeJS and the frontend in React. Firebase is used to store the website data and user authentication, along with Redux for efficient state management.' },     
     ]
 
+    const { isMobile } = useScreenSize();
+
     const lineStyle = {
         display: 'flex',
-        width: 'calc(100% - 6%)',
-        height: '0.5em',
+        width: isMobile? 'calc(240%)' : 'calc(100% - 6%)',
+        height:  '0.5em',
         backgroundColor: 'black',
         position: 'relative',
         top: '50%',
-        paddingLeft: '6%',
-        gap: '16%'
+        paddingLeft: isMobile? '12%' : '6%',
+        gap: isMobile? '5%' : '16%'
     }
 
     const divisionStyle = {
@@ -64,7 +67,7 @@ const Timeline = () => {
         display: 'flex',
         justifyContent: 'center',
         alignItems: 'center',
-        fontSize: '1em',
+        fontSize:    '1em',
         fontWeight: 'bold',
     };
 
@@ -72,10 +75,10 @@ const Timeline = () => {
         position: 'relative',
         top: '-12em',
         right: '10em',
-        fontSize: '1.3em',
+        fontSize: isMobile ? '0.7em' : '1.3em',
         color: 'black',
-        width: '300%',
-        height: '100%',
+        width: isMobile ? '140%' : '300%',
+        height: isMobile ? '160%' : '100%',
     };
 
     return (
@@ -96,7 +99,7 @@ const Timeline = () => {
 
                         {/* Info box on the other side */}
                         {isShowDetails === index && (
-                            <div style={{...infoStyle, top: index % 2 === 0 ? '0.1em' : '-20em'}}>
+                            <div style={{...infoStyle, top: isMobile ? index % 2 === 0 ? '0.1em' : '-24em': index % 2 === 0 ? '0.1em' : '-20em'}}>
                                 <strong>
                                     {item.title},
                                     <br />
