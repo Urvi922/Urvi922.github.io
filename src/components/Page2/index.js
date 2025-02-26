@@ -75,7 +75,7 @@ const Page2 = () => {
         <Line height={1.99} width={0.3} color='black' top={isMobile? 0.26 : 1.99} right={0} left={isMobile? 16.5 : 89.8} />
       </div>
       <div style={{position: 'fixed', zIndex: 1000}}>
-        <Line height={0.3} width={1} color='black' top={isMobile? 1.99 : 3.9} right={0} left={isMobile? 16.6 : 89.8} />
+        <Line height={0.3} width={1} color='black' top={isMobile? 1.99 : 3.9} right={0} left={isMobile? 16.5 : 89.8} />
       </div>
 
       <div style={row}>

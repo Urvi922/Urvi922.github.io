@@ -53,8 +53,8 @@ const Skills = () => {
 
     const image = {
         color: 'black',
-        width: isMobile? '8em': '8em',
-        height: isMobile? '8em': '8em',
+        width: isMobile? '7em': '8em',
+        height: isMobile? '7em': '8em',
         padding: '1.5em',
         border: '0.2em solid black'
     }
@@ -62,15 +62,15 @@ const Skills = () => {
    
     const flipCardStyle ={
         perspective: '1000px',
-        width: isMobile? '8em': '8em',
-        height: isMobile? '8em': '8em',
+        width: isMobile? '7em': '8em',
+        height: isMobile? '7em': '8em',
         padding: isMobile? '1.5em': '3em',
     }
 
     const flipCardInnerStyle ={
         position: 'relative',
-        width: isMobile? '8em': '8em',
-        height: isMobile? '8em': '8em',
+        width: isMobile? '7em': '8em',
+        height: isMobile? '7em': '8em',
         transition: 'transform 0.6s',
         transformStyle: 'preserve-3d',
         display:'flex',
@@ -81,8 +81,8 @@ const Skills = () => {
     
     const frontStyle = {
         position: 'absolute',
-        width: isMobile? '8em': '8em',
-        height: isMobile? '8em': '8em',
+        width: isMobile? '7em': '8em',
+        height: isMobile? '7em': '8em',
         backfaceVisibility: 'hidden',
         display:'flex',
         alignItems: 'center',
@@ -91,15 +91,15 @@ const Skills = () => {
 
     const backStyle = {
         position: 'absolute',
-        width: isMobile? '8em': '8em',
-        height: isMobile? '8em': '8em',
+        width: isMobile? '7em': '8em',
+        height: isMobile? '7em': '8em',
         backfaceVisibility: 'hidden',
         transform: 'rotateY(180deg)',
         display: 'flex',
         alignItems: 'center',
         textAlign: 'center',
         justifyContent: 'center',
-        fontSize: isMobile? '0.7em': '1.37em',
+        fontSize: isMobile? '1.35em': '1.37em',
         color: 'black',
         border: '0.18em solid black'
     }       

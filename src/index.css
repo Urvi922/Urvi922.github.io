@@ -1,6 +1,11 @@
+html {
+    -webkit-overflow-scrolling: touch;
+}
+
+
 body {
     /* cursor: url('/public/wand.png'), auto; */
-    cursor: text;
+    cursor: text;  
 }
 
 .glow span {

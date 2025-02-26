@@ -11,6 +11,7 @@ const App = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const containerRef = useRef(null);
   const isScrolling = useRef(false); // Lock scrolling during transition
+  const touchStartY = useRef(0);
   const transitionTimeout = useRef(null); // To store the timeout for clearing later
 
   // for loading animation
@@ -77,6 +78,36 @@ const App = () => {
     }, 2000); // 1 second for transition duration
   };
 
+
+  //Handle touch scroll event to detect scroll
+  const handleTouchStart = (e) => {
+    touchStartY.current = e.touches[0].clientY;
+  }
+
+  const handleTouchMove = (e) => {
+    if (isScrolling.current) {
+      return; // Prevent scrolling if transition is in progress
+    }
+
+    const touchEndY = e.touches[0].clientY;
+    const deltaY = touchStartY.current - touchEndY;
+
+  if (Math.abs(deltaY) > 30) { // Adjust this threshold as needed
+    isScrolling.current = true;
+    if (deltaY > 0) {
+      setCurrentPage((prevPage) => Math.min(prevPage + 1, 4));
+    } else {
+      setCurrentPage((prevPage) => Math.max(prevPage - 1, 1)); 
+    }
+
+    setTimeout(() => {
+      isScrolling.current = false;
+    }, 500); // Adjust timing based on transition duration
+    
+  }
+  };
+
+
   // Styles for each page
   const pageStyle = {
     width: 'calc(100vw - 3rem)', // Full width minus margins
@@ -131,9 +162,14 @@ const App = () => {
   // Listen for mouse wheel events to trigger the scroll effect
   useEffect(() => {
     window.addEventListener('wheel', handleWheel, { passive: false });
+    window.addEventListener("touchstart", handleTouchStart);
+    window.addEventListener("touchmove", handleTouchMove);
+
 
     return () => {
       window.removeEventListener('wheel', handleWheel);
+      window.removeEventListener("touchstart", handleTouchStart);
+      window.removeEventListener("touchmove", handleTouchMove);
     };
   }, [currentPage]);
 
