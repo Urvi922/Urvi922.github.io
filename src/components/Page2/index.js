@@ -45,9 +45,10 @@ const Page2 = () => {
   const timelinecontainer = {
     position: 'relative',
     width: isMobile? '100%': '140em',
-    height: isMobile? '28em': '40em',
+    height: isMobile? '28em': '42em',
     border: '1px solid white',
-    right: isMobile? '-7em': '0',
+    right: isMobile ? '-7em': '0',
+    top: isMobile ? '0' : '-1em'
   }
 
   const scrollContainer = {
