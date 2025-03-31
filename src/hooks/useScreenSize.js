@@ -3,14 +3,14 @@ import {useState, useEffect} from 'react';
 const useScreenSize = () => {
     const [screenSize, setScreenSize] = useState({
       isMobile: window.innerWidth <= 480,
-      isTab: window.innerWidth <= 768,
+      isIPhone: window.innerWidth <= 390,
     });
   
     useEffect(() => {
       const handleResize = () => {
         setScreenSize({
           isMobile: window.innerWidth <= 480,
-          isTab: window.innerWidth <= 768,
+          isIPhone: window.innerWidth <= 390,
         });
     };
   

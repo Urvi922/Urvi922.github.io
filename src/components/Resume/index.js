@@ -10,11 +10,11 @@ const Resume = () => {
 
     const containerStyle = {
       width: isMobile? '80%': '100%',
-      height: isMobile? '80%': '100%',
+      height: isMobile? '50%': '100%',
       padding: isMobile? '0.1em': '0.5em',  
       display: 'flex',
       flexDirection: 'column',
-     
+      
     }
 
     const buttonStyle ={
@@ -38,7 +38,7 @@ const Resume = () => {
     return (
         <div style={containerStyle}>
           <div style={heading}>
-            <h2 style={{width: isMobile? '12em' : '23em'}}>Download Resume !</h2>
+            <h2 style={{width: isMobile? '10em' : '23em'}}>Download Resume !</h2>
           </div>
           <div style={{right: '10em'}}>
           <a  

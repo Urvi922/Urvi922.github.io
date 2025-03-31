@@ -77,7 +77,8 @@ const ProjectGrid = () => {
     const imageStyle = {
         width: isMobile? '90%' : '100%',
         height: isMobile? '90%' : '100%',
-        objectFit: isMobile? 'inherit' : 'cover',
+        objectFit: isMobile? 'contain' : 'cover',
+        padding: isMobile? '0.6em' : '0'
     }
 
 

@@ -8,6 +8,7 @@ import useScreenSize from '../../hooks/useScreenSize';
 const ContactForm = () => {
     const form = useRef();
     const [message, setMessage] = useState('');
+    const [isLift, setisLift] = useState(false);
  
 
     const sendEmail = (e) => {
@@ -143,7 +144,10 @@ const ContactForm = () => {
                     />
                 </div>
 
-                <button type="submit" style={buttonStyle} value="SEND">Send</button>
+                <button type="submit" 
+                    onMouseEnter={() => setisLift(true)}
+                    onMouseLeave={() => setisLift(false)}
+                    style={{ ...buttonStyle, transform: isLift ? 'translateY(-5px) ' : 'translateY(0)', boxShadow: isLift ? '0 10px 20px rgba(0, 0, 0, 0.3)' : 'none',}} value="SEND">Send</button>
                 
             </form>
             <p>{message}</p>

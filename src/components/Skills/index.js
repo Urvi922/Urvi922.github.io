@@ -1,4 +1,4 @@
-import React, { useState } from 'react'; 
+import React, { useState, useEffect } from 'react'; 
 import useScreenSize from '../../hooks/useScreenSize';
 import Python from '../../images/python.png';
 import Javascript from '../../images/javascript.png';
@@ -24,8 +24,7 @@ import Figma from '../../images/figma.png';
 
 
 const Skills = () => {
-    const [isHovered, setIsHovered] = useState(false);
-
+    
     const skills = [
         { src: Python, alt: "Python" },
         { src: Javascript, alt: "Javascript" },
@@ -53,24 +52,24 @@ const Skills = () => {
 
     const image = {
         color: 'black',
-        width: isMobile? '7em': '8em',
-        height: isMobile? '7em': '8em',
-        padding: '1.5em',
+        width: isMobile? '5em': '8em',
+        height: isMobile? '5em': '8em',
+        padding: isMobile? '0.8em' : '1.5em',
         border: '0.2em solid black'
     }
 
    
     const flipCardStyle ={
         perspective: '1000px',
-        width: isMobile? '7em': '8em',
-        height: isMobile? '7em': '8em',
+        width: isMobile? '5em': '8em',
+        height: isMobile? '5em': '8em',
         padding: isMobile? '1.5em': '3em',
     }
 
     const flipCardInnerStyle ={
         position: 'relative',
-        width: isMobile? '7em': '8em',
-        height: isMobile? '7em': '8em',
+        width: isMobile? '5em': '8em',
+        height: isMobile? '5em': '8em',
         transition: 'transform 0.6s',
         transformStyle: 'preserve-3d',
         display:'flex',
@@ -81,8 +80,8 @@ const Skills = () => {
     
     const frontStyle = {
         position: 'absolute',
-        width: isMobile? '7em': '8em',
-        height: isMobile? '7em': '8em',
+        width: isMobile? '5em': '8em',
+        height: isMobile? '5em': '8em',
         backfaceVisibility: 'hidden',
         display:'flex',
         alignItems: 'center',
@@ -91,8 +90,8 @@ const Skills = () => {
 
     const backStyle = {
         position: 'absolute',
-        width: isMobile? '7em': '8em',
-        height: isMobile? '7em': '8em',
+        width: isMobile? '5em': '8em',
+        height: isMobile? '5em': '8em',
         backfaceVisibility: 'hidden',
         transform: 'rotateY(180deg)',
         display: 'flex',
@@ -127,7 +126,7 @@ const Skills = () => {
 
     const ImageTech = ({ title, images }) => (
         <div>
-            {/* <div style={heading}>{title}</div> */}
+
             <div style={{display:'flex', flexDirection:'row',  alignItems: 'center', justifyContent: 'center' }}>
                 {images.map((img, index) => (
                     <FlipCard key={index} imageSrc={img.src} text={img.alt} />   
@@ -140,41 +139,45 @@ const Skills = () => {
     const carouselContainer = {
         width: '100%',
         overflow: 'hidden',
-        whiteSpace: 'nowrap',
-        position: 'relative'
+        position: 'relative',
+        display: 'flex',
+        alignItems: 'center',
     }
 
     const movingTrack = {
         display: 'flex',
-        animation: isHovered ? 'none' : 'scrolling 40s linear infinite',
         willChange: 'transform'
     };
 
-    const Carousel = ({ children }) => (
+    const Carousel = ({ children }) => {
+        const [isHovered, setIsHovered] = useState(false);
+        const [scrollPosition, setScrollPosition] = useState(0);
+        
+       
+    
+        useEffect(() => {
+            if (!isHovered) {
+                const interval = setInterval(() => {
+                    setScrollPosition((prev) => prev - 1); // Adjust the scroll speed
+                }, 16); // 60 FPS update rate
+                return () => clearInterval(interval);
+
+                
+            }
+        }, [isHovered]);
+        
+        return (
         <div 
             style={carouselContainer}
             onMouseEnter={() => setIsHovered(true)}
             onMouseLeave={() => setIsHovered(false)}
         >
-            <div style={movingTrack}>{children}{children}</div>
-            <style>
-                {`
-                    @keyframes scrolling {
-                        from { transform: translateX(0); }
-                        to { transform: translateX(-50%); }
-                    }
-                `}
-            </style>
-
+            <div style={{...movingTrack, transform: `translateX(${scrollPosition}px)`, transition: isHovered ? 'none' : 'transform 0.5s linear' }}>
+                {children}{children}
+            </div>
         </div>
-    );
+    )};
         
-    
-
-    
-    
-
-    
 
 return  (
     <>

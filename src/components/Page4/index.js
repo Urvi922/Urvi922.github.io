@@ -42,9 +42,9 @@ const Page4 = () => {
     flex: 1,
     alignItems: 'center',
     justifyContent: 'center', 
-    gap: isMobile ? '0.2em' : '1em',
+    gap: isMobile ? '1em' : '1em',
     width: isMobile? '100em': '120em',
-    height: isMobile? '18em' : '40em',
+    height: isMobile? '30em' : '40em',
     fontSize: isMobile? '0.8em': '1.6em',
     color: 'black',
   }
@@ -76,7 +76,8 @@ const Page4 = () => {
   const styles = {
     container: {
       textAlign: 'center',
-      padding: '1em',
+      padding: isMobile? '0.1em' :'1em',
+      justifyContent: 'center'
     },
     icons: {
       display: 'flex',
